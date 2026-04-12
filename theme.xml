@@ -19,7 +19,7 @@
       </b:if>
     </b:if>
     <b:if cond='data:view.isError'>
-      <title>Sayfa Bulunamadi | <data:blog.title/></title>
+      <title>Page Not Found | <data:blog.title/></title>
     </b:if>
     <meta content='#121216' name='theme-color'/>
     <meta content='dark' name='color-scheme'/>
@@ -224,37 +224,21 @@
     <include expiration='3d' path='*.jpeg'/>
     <include expiration='3d' path='*.jpg'/>
     <include expiration='3d' path='*.png'/>
-    <a class='skip-link' href='#main-content'>Icerige gec</a>
+    <a class='skip-link' href='#main-content'>Skip to content</a>
     <b:if cond='!data:view.isError'>
       <header class='site-header'>
         <div class='container-shell header-inner'>
-          <b:section class='header-brand' id='header-brand' maxwidgets='1' showaddelement='no'>
-            <b:widget id='Header1' locked='true' title='Header' type='Header' version='1'>
+          <b:section class='header-brand' id='header-brand' maxwidgets='1' showaddelement='yes'>
+            <b:widget id='HTML5' locked='false' title='Brand' type='HTML' version='1'>
               <b:widget-settings>
-                <b:widget-setting name='displayUrl'/>
-                <b:widget-setting name='displayHeight'>0</b:widget-setting>
-                <b:widget-setting name='sectionWidth'>320</b:widget-setting>
-                <b:widget-setting name='useImage'>false</b:widget-setting>
-                <b:widget-setting name='shrinkToFit'>false</b:widget-setting>
-                <b:widget-setting name='imagePlacement'>BEHIND</b:widget-setting>
-                <b:widget-setting name='displayWidth'>0</b:widget-setting>
+                <b:widget-setting name='content'>&lt;strong&gt;Northstar Journal&lt;/strong&gt;</b:widget-setting>
               </b:widget-settings>
               <b:includable id='main'>
-                <a class='brand-mark' expr:aria-label='data:title + &quot; ana sayfa&quot;' expr:href='data:blog.homepageUrl'>
-                  <span class='brand-mark-icon'>•</span>
+                <a aria-label='Home page' class='brand-mark' expr:href='data:blog.homepageUrl'>
                   <span class='brand-mark-copy'>
-                    <b:include name='title'/>
-                    <b:include name='description'/>
+                    <data:content/>
                   </span>
                 </a>
-              </b:includable>
-              <b:includable id='title'>
-                <strong><data:title/></strong>
-              </b:includable>
-              <b:includable id='description'>
-                <b:if cond='data:description'>
-                  <small><data:description/></small>
-                </b:if>
               </b:includable>
             </b:widget>
           </b:section>
@@ -262,14 +246,14 @@
             <span></span>
             <span></span>
             <span></span>
-            <span class='sr-only'>Menuyu ac</span>
+            <span class='sr-only'>Open menu</span>
           </button>
-          <nav aria-label='Ana menu' class='primary-nav' data-menu-panel='panel' id='primary-menu'>
+          <nav aria-label='Main menu' class='primary-nav' data-menu-panel='panel' id='primary-menu'>
             <b:section class='header-menu' id='header-menu' maxwidgets='1' showaddelement='yes'>
               <b:widget id='HTML1' locked='false' title='Menu' type='HTML' version='1'>
                 <b:widget-settings>
-                  <b:widget-setting name='content'>&lt;a href=&quot;/&quot;&gt;Ana sayfa&lt;/a&gt;
-&lt;a href=&quot;/p/kategoriler.html&quot;&gt;Kategoriler&lt;/a&gt;</b:widget-setting>
+                  <b:widget-setting name='content'>&lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;
+&lt;a href=&quot;/p/kategoriler.html&quot;&gt;Categories&lt;/a&gt;</b:widget-setting>
                 </b:widget-settings>
                 <b:includable id='main'>
                   <div class='widget-content'>
@@ -307,18 +291,18 @@
                             <p class='eyebrow'><data:blog.title/></p>
                           <b:else/>
                             <b:if cond='data:blog.searchLabel'>
-                              <p class='eyebrow'>Kategori</p>
+                              <p class='eyebrow'>Category</p>
                               <h1><data:blog.searchLabel/></h1>
                             <b:else/>
                               <b:if cond='data:blog.searchQuery'>
-                                <p class='eyebrow'>Arama</p>
-                                <h1>Arama sonuclari</h1>
+                                <p class='eyebrow'>Search</p>
+                                <h1>Search results</h1>
                               <b:else/>
                                 <b:if cond='data:view.isArchive'>
-                                  <p class='eyebrow'>Arsiv</p>
+                                  <p class='eyebrow'>Archive</p>
                                   <h1><data:blog.pageTitle/></h1>
                                 <b:else/>
-                                  <p class='eyebrow'>Yayin</p>
+                                  <p class='eyebrow'>Posts</p>
                                   <h1><data:blog.pageTitle/></h1>
                                 </b:if>
                               </b:if>
@@ -353,7 +337,7 @@
                   <b:if cond='data:blog.pageType == &quot;item&quot;'>
                     <b:loop values='data:posts' var='post'>
                       <div class='breadcrumbs'>
-                        <a expr:href='data:blog.homepageUrl'>Ana sayfa</a>
+                        <a expr:href='data:blog.homepageUrl'>Home</a>
                         <b:if cond='data:post.labels'>
                           <b:loop index='num' values='data:post.labels' var='label'>
                             <b:if cond='data:num == 0'>
@@ -374,7 +358,7 @@
                   <b:if cond='data:blog.pageType == &quot;static_page&quot;'>
                     <b:loop values='data:posts' var='post'>
                       <div class='breadcrumbs'>
-                        <a expr:href='data:blog.homepageUrl'>Ana sayfa</a>
+                        <a expr:href='data:blog.homepageUrl'>Home</a>
                         <svg aria-hidden='true' viewBox='0 0 24 24'>
                           <path d='M9 6l6 6-6 6' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8'></path>
                         </svg>
@@ -387,13 +371,13 @@
                 <b:includable id='nextprev'>
                   <b:if cond='data:newerPageUrl or data:olderPageUrl'>
                     <b:if cond='data:blog.pageType == &quot;item&quot;'>
-                      <nav aria-label='Yazi gezinmesi' class='pagination pagination-post reveal'>
+                      <nav aria-label='Post navigation' class='pagination pagination-post reveal'>
                         <div class='pagination-post-links'>
                           <b:if cond='data:newerPageUrl'>
                             <a class='pagination-post-link is-prev' expr:href='data:newerPageUrl' rel='prev'>
                               <span aria-hidden='true' class='pagination-post-arrow'>←</span>
                               <span class='pagination-post-content'>
-                                <span class='pagination-post-kicker'>Onceki post</span>
+                                <span class='pagination-post-kicker'>Previous post</span>
                                 <span class='pagination-post-title'><data:newerPageTitle/></span>
                               </span>
                             </a>
@@ -401,7 +385,7 @@
                           <b:if cond='data:olderPageUrl'>
                             <a class='pagination-post-link is-next' expr:href='data:olderPageUrl' rel='next'>
                               <span class='pagination-post-content'>
-                                <span class='pagination-post-kicker'>Sonraki post</span>
+                                <span class='pagination-post-kicker'>Next post</span>
                                 <span class='pagination-post-title'><data:olderPageTitle/></span>
                               </span>
                               <span aria-hidden='true' class='pagination-post-arrow'>→</span>
@@ -410,15 +394,15 @@
                         </div>
                       </nav>
                     <b:else/>
-                      <nav aria-label='Sayfalama' class='pagination surface-panel reveal'>
-                        <span class='pagination-label'>Sayfalar</span>
+                      <nav aria-label='Pagination' class='pagination surface-panel reveal'>
+                        <span class='pagination-label'>Pages</span>
                         <div class='pagination-links'>
                           <b:if cond='data:newerPageUrl'>
-                            <a aria-label='Yeni sayfa' class='pagination-link' expr:href='data:newerPageUrl' rel='prev'>&#8249;</a>
+                            <a aria-label='Newer page' class='pagination-link' expr:href='data:newerPageUrl' rel='prev'>&#8249;</a>
                           </b:if>
                           <a class='pagination-link' expr:href='data:blog.homepageUrl'>•</a>
                           <b:if cond='data:olderPageUrl'>
-                            <a aria-label='Eski sayfa' class='pagination-link' expr:href='data:olderPageUrl' rel='next'>&#8250;</a>
+                            <a aria-label='Older page' class='pagination-link' expr:href='data:olderPageUrl' rel='next'>&#8250;</a>
                           </b:if>
                         </div>
                       </nav>
@@ -575,23 +559,23 @@
               </b:widget>
             </b:section>
           </div>
-          <aside aria-label='Yan panel' class='sidebar' id='sidebar-wrapper'>
+          <aside aria-label='Sidebar' class='sidebar' id='sidebar-wrapper'>
             <div class='sidebar-stack'>
               <section class='sidebar-card surface-panel reveal'>
                 <div class='sidebar-heading'>
-                  <h2>Ara</h2>
+                  <h2>Search</h2>
                 </div>
                 <form class='search-shell' expr:action='data:blog.homepageUrl + &quot;search&quot;' method='get' role='search'>
-                  <button aria-label='Ara' class='search-submit' type='submit'>
+                  <button aria-label='Search' class='search-submit' type='submit'>
                     <svg aria-hidden='true' class='icon' viewBox='0 0 24 24'>
                       <path d='M10.5 4a6.5 6.5 0 1 0 4.12 11.53l4.42 4.42 1.41-1.41-4.42-4.42A6.5 6.5 0 0 0 10.5 4Z' fill='currentColor'></path>
                     </svg>
                   </button>
-                  <input autocomplete='off' id='site-search' name='q' placeholder='Orn. performans' type='search'/>
+                  <input autocomplete='off' id='site-search' name='q' placeholder='E.g. performance' type='search'/>
                 </form>
               </section>
               <b:section class='sidebar' id='sidebar' preferred='yes'>
-                <b:widget id='PopularPosts1' locked='false' title='Populer yazilar' type='PopularPosts' version='1'>
+                <b:widget id='PopularPosts1' locked='false' title='Popular posts' type='PopularPosts' version='1'>
                   <b:widget-settings>
                     <b:widget-setting name='numItemsToShow'>5</b:widget-setting>
                     <b:widget-setting name='showThumbnails'>false</b:widget-setting>
@@ -617,7 +601,7 @@
                     </section>
                   </b:includable>
                 </b:widget>
-                <b:widget id='Label1' locked='false' title='Kategoriler' type='Label' version='1'>
+                <b:widget id='Label1' locked='false' title='Categories' type='Label' version='1'>
                   <b:widget-settings>
                     <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
                     <b:widget-setting name='display'>LIST</b:widget-setting>
@@ -662,8 +646,7 @@
           <b:section class='footer-brand' id='footer-brand' maxwidgets='1' showaddelement='yes'>
             <b:widget id='HTML2' locked='false' title='Northstar Journal' type='HTML' version='1'>
               <b:widget-settings>
-                <b:widget-setting name='content'>&lt;p&gt;Performans, okunabilirlik ve SEO odakli yayin tasarimi notlari.&lt;/p&gt;
-&lt;p class=&quot;footer-copy&quot;&gt;Bu alani Layout ekranindan duzenleyebilirsin.&lt;/p&gt;</b:widget-setting>
+                <b:widget-setting name='content'>&lt;p&gt;Performance, readability, and SEO-focused publishing notes.&lt;/p&gt;</b:widget-setting>
               </b:widget-settings>
               <b:includable id='main'>
                 <section class='footer-block'>
@@ -681,12 +664,12 @@
             </b:widget>
           </b:section>
           <b:section class='footer-links-section' id='footer-links-section' maxwidgets='1' showaddelement='yes'>
-            <b:widget id='HTML3' locked='false' title='Baglantilar' type='HTML' version='1'>
+            <b:widget id='HTML3' locked='false' title='Links' type='HTML' version='1'>
               <b:widget-settings>
                 <b:widget-setting name='content'>&lt;ul class=&quot;footer-links&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;/&quot;&gt;Ana sayfa&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/search&quot;&gt;Arama&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/p/kategoriler.html&quot;&gt;Kategoriler&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/search&quot;&gt;Search&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/p/kategoriler.html&quot;&gt;Categories&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</b:widget-setting>
               </b:widget-settings>
               <b:includable id='main'>
@@ -702,12 +685,12 @@
             </b:widget>
           </b:section>
           <b:section class='footer-contact' id='footer-contact' maxwidgets='1' showaddelement='yes'>
-            <b:widget id='HTML4' locked='false' title='Iletisim' type='HTML' version='1'>
+            <b:widget id='HTML4' locked='false' title='Contact' type='HTML' version='1'>
               <b:widget-settings>
                 <b:widget-setting name='content'>&lt;ul class=&quot;footer-links&quot;&gt;
 &lt;li&gt;&lt;a href=&quot;mailto:hello@example.com&quot;&gt;hello@example.com&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;tel:+900000000000&quot;&gt;+90 000 000 00 00&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;span&gt;Istanbul, Turkiye&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span&gt;Istanbul, Turkey&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;</b:widget-setting>
               </b:widget-settings>
               <b:includable id='main'>
@@ -728,10 +711,10 @@
       <main class='container-shell error-shell'>
         <div class='page-surface surface-panel'>
           <p class='eyebrow'>404</p>
-          <h1>Sayfa bulunamadi</h1>
-          <p>Istegin mevcut tema akisi icinde karsilik bulamadi. Ana sayfaya donup yayina devam edebilirsin.</p>
+          <h1>Page not found</h1>
+          <p>The page you requested could not be found.</p>
           <div class='error-actions'>
-            <a class='button-link' expr:href='data:blog.homepageUrl'>Ana sayfaya don</a>
+            <a class='button-link' expr:href='data:blog.homepageUrl'>Back to home</a>
           </div>
         </div>
       </main>
