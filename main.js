@@ -1,42 +1,59 @@
 //<![CDATA[
 (function() {
   var header = document.querySelector('.site-header');
+  var panel = document.querySelector('[data-menu-panel]');
   if (!header) {
     return;
   }
   var lastY = window.scrollY || window.pageYOffset || 0;
+  var pendingY = lastY;
   var ticking = false;
+  var isScrolled = false;
+  var isHidden = false;
+  var isPinned = true;
+  function setHeaderState(nextScrolled, nextHidden, nextPinned) {
+    if (isScrolled !== nextScrolled) {
+      header.classList.toggle('is-scrolled', nextScrolled);
+      isScrolled = nextScrolled;
+    }
+    if (isHidden !== nextHidden) {
+      header.classList.toggle('is-hidden', nextHidden);
+      isHidden = nextHidden;
+    }
+    if (isPinned !== nextPinned) {
+      header.classList.toggle('is-pinned', nextPinned);
+      isPinned = nextPinned;
+    }
+  }
   function updateHeaderState() {
     ticking = false;
-    var currentY = window.scrollY || window.pageYOffset || 0;
-    var panel = document.querySelector('[data-menu-panel]');
+    var currentY = pendingY;
     var menuOpen = !!(panel && panel.classList.contains('is-open'));
-    header.classList.toggle('is-scrolled', currentY > 12);
     if (menuOpen || currentY < 16) {
-      header.classList.remove('is-hidden');
-      header.classList.add('is-pinned');
+      setHeaderState(currentY > 12, false, true);
       lastY = currentY;
       return;
     }
     var delta = currentY - lastY;
     if (delta > 6 && currentY > 96) {
-      header.classList.add('is-hidden');
-      header.classList.remove('is-pinned');
+      setHeaderState(true, true, false);
     } else if (delta < -6) {
-      header.classList.remove('is-hidden');
-      header.classList.add('is-pinned');
+      setHeaderState(true, false, true);
+    } else {
+      setHeaderState(currentY > 12, isHidden, isPinned);
     }
     lastY = currentY;
   }
   function requestHeaderUpdate() {
+    pendingY = window.scrollY || window.pageYOffset || 0;
     if (ticking) {
       return;
     }
     ticking = true;
     window.requestAnimationFrame(updateHeaderState);
   }
-  header.classList.add('is-pinned');
-  updateHeaderState();
+  setHeaderState(false, false, true);
+  requestHeaderUpdate();
   window.addEventListener('scroll', requestHeaderUpdate, {passive: true});
   window.addEventListener('resize', requestHeaderUpdate);
 })();
